@@ -1,41 +1,50 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../Context/AuthContext";
+import { Link } from "react-router";
 
 const Register = () => {
+  const { registerUser, updateUserProfile } = useContext(AuthContext);
+  const handleRegisterUser = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const { email, password, ...restField } = Object.fromEntries(
+      formData.entries()
+    );
+
+    registerUser(email, password).then((result) => {
+      if (result.user) {
+        updateUserProfile(restField).then(() => console.log("profile Updated"));
+      }
+    });
+  };
   return (
     <div>
       <div className="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-50 dark:text-gray-800 my-10 mx-auto">
         <h1 className="text-2xl font-bold text-center">Register Here</h1>
-        <form noValidate="" action="" className="space-y-6">
+        <form onSubmit={handleRegisterUser} className="space-y-6">
           <div className="space-y-1 text-sm">
-            <label htmlFor="username" className="block dark:text-gray-600">
-              Username
-            </label>
+            <label className="block dark:text-gray-600">Full Name</label>
             <input
               type="text"
-              name="username"
-              id="username"
-              placeholder="Username"
+              name="name"
+              placeholder="Write Your Fullname"
               className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600 border border-slate-500"
             />
           </div>
 
           <div className="space-y-1 text-sm">
-            <label htmlFor="username" className="block dark:text-gray-600">
-              Email
-            </label>
+            <label className="block dark:text-gray-600">Email</label>
             <input
               type="text"
               name="email"
-              id="username"
               placeholder="Enter your email"
               className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600 border border-slate-500"
             />
           </div>
 
           <div className="space-y-1 text-sm">
-            <label htmlFor="username" className="block dark:text-gray-600">
-              Photo Url
-            </label>
+            <label className="block dark:text-gray-600">Photo Url</label>
             <input
               type="text"
               name="photo_url"
@@ -50,13 +59,14 @@ const Register = () => {
             <input
               type="password"
               name="password"
-              id="password"
               placeholder="Password"
               className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600 border border-slate-500"
             />
           </div>
-          <button className="block w-full p-3 text-center rounded-sm dark:text-gray-50 bg-primary">
-            Sign in
+          <button
+            type="submit"
+            className="block w-full p-3 text-center rounded-sm dark:text-gray-50 bg-primary">
+            Register
           </button>
         </form>
         <div className="flex items-center pt-4 space-x-1">
@@ -93,13 +103,10 @@ const Register = () => {
           </button>
         </div>
         <p className="text-xs text-center sm:px-6 dark:text-gray-600">
-          Don't have an account?
-          <a
-            rel="noopener noreferrer"
-            href="#"
-            className="underline dark:text-gray-800">
-            Sign up
-          </a>
+          Already have an account?
+          <Link to={"/login"} className="underline dark:text-gray-800">
+            Login Here
+          </Link>
         </p>
       </div>
     </div>
