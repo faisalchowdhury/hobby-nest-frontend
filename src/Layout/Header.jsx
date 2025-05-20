@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../assets/logo.png";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../Context/AuthContext";
+import { signOut } from "firebase/auth";
+import { auth } from "../Firebase/firebase";
+import { Tooltip } from "react-tooltip";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
   const menu = (
     <>
       <NavLink>Home</NavLink>
@@ -38,9 +43,9 @@ const Header = () => {
               {menu}
             </ul>
           </div>
-          <a>
+          <Link to={"/"}>
             <img className="w-[200px]" src={logo} alt="" />
-          </a>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 space-x-3 text-lg">
@@ -48,7 +53,30 @@ const Header = () => {
           </ul>
         </div>
         <div className="navbar-end text-lg">
-          <Link to={"/login"}>Login</Link>
+          {!user ? (
+            <Link
+              className="btn bg-primary border-none text-white px-10 rounded-full hover:bg-black text-lg shadow"
+              to={"/login"}>
+              Login
+            </Link>
+          ) : (
+            <>
+              <div className="flex gap-3 items-center">
+                <img
+                  className="w-[30px] h-[30px] rounded-full my-tooltip-element"
+                  src={user.photoURL}
+                />
+                <Tooltip anchorSelect=".my-tooltip-element" place="top">
+                  {user.displayName}
+                </Tooltip>
+                <button
+                  className="btn bg-primary border-none text-white px-10 rounded-full hover:bg-black text-lg shadow"
+                  onClick={() => signOut(auth)}>
+                  Logout
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

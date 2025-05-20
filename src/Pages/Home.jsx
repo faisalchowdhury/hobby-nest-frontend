@@ -100,7 +100,7 @@ const Home = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 py-40">
         <div
           style={{ boxShadow: "-15px 15px 0px 0px #004122" }}
-          className="text-center bg-white px-5 py-20 relative rounded-t-2xl hover:-translate-y-1.5 transition duration-1000 border-5 border-b-0">
+          className="text-center bg-white px-5 py-20 relative rounded-t-2xl  hover:-translate-y-5 transition duration-500 border-5 border-b-0">
           <div className="absolute flex justify-center items-center -top-15 left-0 right-0 bg-white border-5 border-#004122 w-[120px] h-[120px] mx-auto rounded-full">
             <PiShareNetwork color="#004122" size={80} />
           </div>
@@ -113,7 +113,7 @@ const Home = () => {
 
         <div
           style={{ boxShadow: "-15px 15px 0px 0px purple" }}
-          className="text-center bg-white px-10 py-20 relative rounded-t-2xl hover:-translate-y-1.5 transition duration-1000 border-5 border-b-0">
+          className="text-center bg-white px-10 py-20 relative rounded-t-2xl  hover:-translate-y-5 transition duration-500 border-5 border-b-0">
           <div className="absolute flex justify-center items-center -top-15 left-0 right-0 bg-white border-5 border-#004122 w-[120px] h-[120px] mx-auto rounded-full">
             <SiReadthedocs color="#004122" size={80} />
           </div>
@@ -126,7 +126,7 @@ const Home = () => {
 
         <div
           style={{ boxShadow: "-15px 15px 0px 0px orange" }}
-          className="text-center bg-white px-10 py-20 relative rounded-t-2xl hover:-translate-y-1.5 transition duration-1000 border-5 border-b-0">
+          className="text-center bg-white px-10 py-20 relative rounded-t-2xl  hover:-translate-y-5 transition duration-500 border-5 border-b-0">
           <div className="absolute flex justify-center items-center -top-15 left-0 right-0 bg-white border-5 border-#004122 w-[120px] h-[120px] mx-auto rounded-full">
             <PiUsersThreeFill color="#004122" size={80} />
           </div>
