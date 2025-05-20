@@ -94,11 +94,65 @@ const Home = () => {
 
       {/* Why Us */}
 
-      <div className="grid grid-cols-3">
-        <div>
-          <div>
-            <img src="" alt="" />
+      <div className="grid grid-cols-4 gap-10 py-20">
+        <div
+          style={{ boxShadow: "-15px 15px 0px 0px green" }}
+          className="text-center bg-sky-100 px-10 py-20 relative rounded-t-2xl hover:-translate-y-1.5 transition duration-1000">
+          <div className="absolute flex justify-center -top-12 left-0 right-0 ">
+            <img
+              className="w-[100px] h-[100px] rounded-full"
+              src="https://i.ibb.co/ZRpYz63w/7e21b9661c85d61676143a8ae2c9a73b.jpg"
+              alt=""
+            />
           </div>
+
+          <h1 className="text-5xl font-semibold">9x</h1>
+          <h2 className="text-2xl">More engagement then social</h2>
+        </div>
+
+        <div
+          style={{ boxShadow: "-15px 15px 0px 0px green" }}
+          className="text-center bg-sky-100 px-10 py-20 relative rounded-t-2xl hover:-translate-y-1.5 transition duration-1000">
+          <div className="absolute flex justify-center -top-12 left-0 right-0 ">
+            <img
+              className="w-[100px] h-[100px] rounded-full"
+              src="https://i.ibb.co/ZRpYz63w/7e21b9661c85d61676143a8ae2c9a73b.jpg"
+              alt=""
+            />
+          </div>
+
+          <h1 className="text-5xl font-semibold">9x</h1>
+          <h2 className="text-2xl">More engagement then social</h2>
+        </div>
+
+        <div
+          style={{ boxShadow: "-15px 15px 0px 0px green" }}
+          className="text-center bg-sky-100 px-10 py-20 relative rounded-t-2xl hover:-translate-y-1.5 transition duration-1000">
+          <div className="absolute flex justify-center -top-12 left-0 right-0 ">
+            <img
+              className="w-[100px] h-[100px] rounded-full"
+              src="https://i.ibb.co/ZRpYz63w/7e21b9661c85d61676143a8ae2c9a73b.jpg"
+              alt=""
+            />
+          </div>
+
+          <h1 className="text-5xl font-semibold">9x</h1>
+          <h2 className="text-2xl">More engagement then social</h2>
+        </div>
+
+        <div
+          style={{ boxShadow: "-15px 15px 0px 0px green" }}
+          className="text-center bg-sky-100 px-10 py-20 relative rounded-t-2xl hover:-translate-y-1.5 transition duration-1000">
+          <div className="absolute flex justify-center -top-12 left-0 right-0 ">
+            <img
+              className="w-[100px] h-[100px] rounded-full"
+              src="https://i.ibb.co/ZRpYz63w/7e21b9661c85d61676143a8ae2c9a73b.jpg"
+              alt=""
+            />
+          </div>
+
+          <h1 className="text-5xl font-semibold">9x</h1>
+          <h2 className="text-2xl">More engagement then social</h2>
         </div>
       </div>
     </div>
