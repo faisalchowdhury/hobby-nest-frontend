@@ -11,10 +11,10 @@ const MainLayout = () => {
       <Header></Header>
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-10 gap-10 py-5">
-          <div className="col-span-8">
+          <div className="md:col-span-8 col-span-10">
             <Outlet></Outlet>
           </div>
-          <div className="col-span-2">
+          <div className="hidden md:block col-span-2">
             <Sidebar></Sidebar>
           </div>
         </div>

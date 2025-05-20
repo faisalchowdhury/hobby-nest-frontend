@@ -3,6 +3,12 @@
 @plugin "daisyui" {
   themes: none;
 }
+
+@plugin "daisyui/theme" {
+  name: "mytheme";
+  default: true;
+  --color-primary: "#004122";
+}
 .ancizar-sans-hobbynest {
   font-family: "Ancizar Sans", sans-serif;
   font-optical-sizing: auto;
@@ -40,4 +46,10 @@
 .swiper-button-prev:after,
 .swiper-button-next:after {
   font-size: 14px !important;
+}
+
+@media screen and (max-width: 420px) {
+  .swiper-slide img {
+    height: 150px;
+  }
 }
