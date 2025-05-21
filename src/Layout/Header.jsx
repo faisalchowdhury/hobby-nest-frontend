@@ -5,19 +5,21 @@ import { AuthContext } from "../Context/AuthContext";
 import { signOut } from "firebase/auth";
 import { auth } from "../Firebase/firebase";
 import { Tooltip } from "react-tooltip";
+import { Toaster } from "react-hot-toast";
 
 const Header = () => {
   const { user } = useContext(AuthContext);
   const menu = (
     <>
-      <NavLink>Home</NavLink>
+      <NavLink to={"/"}>Home</NavLink>
       <NavLink>All Groups</NavLink>
-      <NavLink>Create Group</NavLink>
+      <NavLink to={"/create-group"}>Create Group</NavLink>
       <NavLink>My Groups</NavLink>
     </>
   );
   return (
     <div>
+      <Toaster />
       <div className="navbar bg-base-100 max-w-7xl mx-auto">
         <div className="navbar-start">
           <div className="dropdown">

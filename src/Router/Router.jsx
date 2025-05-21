@@ -4,6 +4,7 @@ import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import RegularLayout from "../Layout/RegularLayout";
 import Register from "../Pages/Register";
+import CreateGroup from "../Pages/CreateGroup";
 
 export const router = createBrowserRouter([
   {
@@ -13,6 +14,7 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+        loader: () => fetch("http://localhost:3000/sorted-groups"),
       },
     ],
   },
@@ -27,6 +29,10 @@ export const router = createBrowserRouter([
       {
         path: "register",
         Component: Register,
+      },
+      {
+        path: "create-group",
+        Component: CreateGroup,
       },
     ],
   },

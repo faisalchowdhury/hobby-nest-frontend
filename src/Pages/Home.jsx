@@ -3,8 +3,11 @@ import Slider from "../Component/Slider";
 import CountUp from "react-countup";
 import { PiShareNetwork, PiUsersThreeFill } from "react-icons/pi";
 import { SiReadthedocs } from "react-icons/si";
+import { useLoaderData } from "react-router";
 
 const Home = () => {
+  const data = useLoaderData();
+  console.log(data);
   return (
     <div>
       <Slider></Slider>
