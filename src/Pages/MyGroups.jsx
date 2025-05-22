@@ -1,17 +1,20 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
 const MyGroups = () => {
   const { user } = useContext(AuthContext);
   const [groups, setGroups] = useState([]);
+
   console.log(user?.email);
   useEffect(() => {
     fetch(`http://localhost:3000/my-groups/${user?.email}`)
       .then((res) => res.json())
-      .then((data) => setGroups(data));
+      .then((data) => {
+        setGroups(data);
+      });
   }, [user]);
 
   // Handle delete ;
@@ -41,6 +44,49 @@ const MyGroups = () => {
           });
       }
     });
+  };
+
+  // Handle Edit
+  const textArea = useRef("");
+  const modalBox = useRef("");
+  const [dataToUpdate, setDataToUpdate] = useState({});
+  const openModal = (id) => {
+    modalBox.current.showModal();
+
+    fetch(`http://localhost:3000/group/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setDataToUpdate(data);
+      });
+  };
+
+  const handleUpdateGroup = (id) => {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+    const formFields = Object.fromEntries(formData);
+    const textAreaData = textArea.current.value;
+    const data = {
+      ...formFields,
+      description: textAreaData,
+    };
+
+    fetch(`http://localhost:3000/update/${id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount) {
+          toast.success("Group Information Updated successfully");
+        } else if (data.modifiedCount === 0) {
+          toast.error("You haven't change any field");
+        }
+        console.log(data);
+      });
   };
   return (
     <div className="my-5">
@@ -88,7 +134,9 @@ const MyGroups = () => {
                 </td>
                 <td>{group["hobby-category"]}</td>
                 <th className="space-x-3">
-                  <button className=" border-none btn-xs">
+                  <button
+                    onClick={() => openModal(group._id)}
+                    className=" border-none btn-xs">
                     <FaEdit
                       color="gray"
                       title="Edit this Group information"
@@ -110,6 +158,127 @@ const MyGroups = () => {
           </tbody>
         </table>
       </div>
+      {/* MOdal Popup */}
+      <dialog ref={modalBox} id="my_modal_7" className="modal">
+        <Toaster></Toaster>
+        <div className=" bg-white w-5xl p-5 relative">
+          <h2 className="text-3xl my-5">Update Group</h2>
+          <form
+            onSubmit={() => handleUpdateGroup(dataToUpdate._id)}
+            className="grid grid-cols-3 gap-3"
+            method="dialog">
+            <div>
+              <label htmlFor="">Group name</label>
+              <input
+                name="group_name"
+                type="text"
+                placeholder="Type group name"
+                defaultValue={dataToUpdate.group_name}
+                className="input border border-slate-300 rounded-full w-full"
+              />
+            </div>
+            <div>
+              <label htmlFor="">Hobby Category </label>
+              <select
+                name="hobby-category"
+                defaultValue={dataToUpdate["hobby-category"]}
+                className="select border border-slate-300 rounded-full w-full">
+                <option disabled={true}>Choose a hobby</option>
+
+                <option value="Drawing & Painting">Drawing & Painting</option>
+                <option value="Photography">Photography</option>
+                <option value="Video Gaming">Video Gaming</option>
+                <option value="Fishing">Fishing</option>
+                <option value="Running">Running</option>
+                <option value="Cooking">Cooking</option>
+                <option value="Reading">Reading</option>
+                <option value="Writing">Writing</option>
+              </select>
+            </div>
+
+            <div>
+              <label htmlFor="">Meeting Location</label>
+              <input
+                name="location"
+                type="text"
+                placeholder="Meeting location"
+                defaultValue={dataToUpdate.location}
+                className="input border border-slate-300 rounded-full w-full"
+              />
+            </div>
+            <div>
+              <label htmlFor="">Max member</label>
+              <input
+                name="max-member"
+                type="text"
+                placeholder="Max member"
+                defaultValue={dataToUpdate["max-member"]}
+                className="input border border-slate-300 rounded-full w-full"
+              />
+            </div>
+            <div>
+              <label htmlFor="">End Date</label>
+              <input
+                name="end_date"
+                type="date"
+                placeholder="Start Date"
+                defaultValue={dataToUpdate.end_date}
+                className="input border border-slate-300 rounded-full w-full"
+              />
+            </div>
+            <div>
+              <label htmlFor="">Image Url</label>
+              <input
+                name="image_url"
+                type="text"
+                placeholder="Image Url"
+                defaultValue={dataToUpdate.image_url}
+                className="input border border-slate-300 rounded-full w-full"
+              />
+            </div>
+            <div>
+              <label htmlFor="">User Name</label>
+              <input
+                name="user_name"
+                type="text"
+                defaultValue={user?.displayName}
+                readOnly
+                className="input border border-slate-300 rounded-full w-full"
+              />
+            </div>
+            <div>
+              <label htmlFor="">User Email</label>
+              <input
+                name="user_email"
+                type="text"
+                defaultValue={user?.email}
+                readOnly
+                className="input border border-slate-300 rounded-full w-full "
+              />
+            </div>
+
+            <div className="col-span-3 ">
+              <label htmlFor="">Description</label>
+              <textarea
+                ref={textArea}
+                className="textarea border border-slate-300 rounded-lg w-full "
+                placeholder="Bio"
+                defaultValue={dataToUpdate.description}></textarea>
+            </div>
+            <input
+              type="submit"
+              className="rounded-full w-full bg-primary text-white col-span-3 p-3"
+              value={"Submit"}
+            />
+            <button
+              type="button"
+              onClick={() => modalBox.current.close()}
+              className="modal-action btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
+        </div>
+      </dialog>
     </div>
   );
 };
