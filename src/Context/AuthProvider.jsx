@@ -34,9 +34,7 @@ const AuthProvider = ({ children }) => {
   // Login with Google
   const googleProvider = new GoogleAuthProvider();
   const loginWithGoogle = () => {
-    signInWithPopup(auth, googleProvider)
-      .then((result) => console.log(result.user))
-      .catch((err) => console.dir(err));
+    return signInWithPopup(auth, googleProvider);
   };
   // onAuthStateChange / observer
 

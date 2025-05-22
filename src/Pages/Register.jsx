@@ -1,9 +1,14 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import toast from "react-hot-toast";
 
 const Register = () => {
-  const { registerUser, updateUserProfile } = useContext(AuthContext);
+  const { registerUser, updateUserProfile, loginWithGoogle } =
+    useContext(AuthContext);
+
+  const navigate = useNavigate();
+
   const handleRegisterUser = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -17,6 +22,15 @@ const Register = () => {
         updateUserProfile(restField).then(() => console.log("profile Updated"));
       }
     });
+  };
+
+  const googleLogin = () => {
+    loginWithGoogle()
+      .then((result) => {
+        toast.success("Successfully logged in");
+        navigate("/");
+      })
+      .catch((err) => console.dir(err));
   };
   return (
     <div>
@@ -78,7 +92,9 @@ const Register = () => {
         </div>
         <div className="flex justify-center space-x-4">
           {/* Google */}
-          <button className="btn bg-white w-full text-black border-[#e5e5e5]">
+          <button
+            onClick={googleLogin}
+            className="btn bg-white w-full text-black border-[#e5e5e5]">
             <svg
               aria-label="Google logo"
               width="16"

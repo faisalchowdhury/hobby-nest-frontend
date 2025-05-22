@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaEye } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
+import { Link } from "react-router";
 const MyGroups = () => {
   const { user } = useContext(AuthContext);
   const [groups, setGroups] = useState([]);
@@ -90,74 +91,96 @@ const MyGroups = () => {
   };
   return (
     <div className="my-5">
-      <div className="overflow-x-auto">
-        <table className="table">
-          {/* head */}
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Group Name</th>
-              <th>Meetup Info</th>
-              <th>Category</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* row 1 */}
-
-            {groups.map((group, i) => (
-              <tr key={group._id}>
-                <th>{i + 1}</th>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle h-12 w-12">
-                        <img src={group.image_url} alt={group.group_name} />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="font-bold text-xl">
-                        {group.group_name}
-                      </div>
-                      <div className="text-sm opacity-50">
-                        End Date : {group.end_date}
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  {group.location}
-                  <br />
-                  <span className="badge badge-ghost badge-sm bg-green-900 text-white">
-                    Max Member : {group["max-member"]}
-                  </span>
-                </td>
-                <td>{group["hobby-category"]}</td>
-                <th className="space-x-3">
-                  <button
-                    onClick={() => openModal(group._id)}
-                    className=" border-none btn-xs">
-                    <FaEdit
-                      color="gray"
-                      title="Edit this Group information"
-                      size={26}
-                    />
-                  </button>
-                  <button
-                    onClick={() => handleDelete(group._id)}
-                    className=" border-none btn-xs">
-                    <MdDeleteOutline
-                      color="red"
-                      title="Are you want to delete this ?"
-                      size={26}
-                    />
-                  </button>
-                </th>
+      {groups.length > 0 ? (
+        <div className="overflow-x-auto">
+          <table className="table">
+            {/* head */}
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Group Name</th>
+                <th>Meetup Info</th>
+                <th>Category</th>
+                <th>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {/* row 1 */}
+
+              {groups.map((group, i) => (
+                <tr key={group._id}>
+                  <th>{i + 1}</th>
+                  <td>
+                    <div className="flex items-center gap-3">
+                      <div className="avatar">
+                        <div className="mask mask-squircle h-12 w-12">
+                          <img src={group.image_url} alt={group.group_name} />
+                        </div>
+                      </div>
+                      <div>
+                        <div className="font-bold text-xl">
+                          {group.group_name}
+                        </div>
+                        <div className="text-sm opacity-50">
+                          End Date : {group.end_date}
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    {group.location}
+                    <br />
+                    <span className="badge badge-ghost badge-sm bg-green-900 text-white">
+                      Max Member : {group["max-member"]}
+                    </span>
+                  </td>
+                  <td>{group["hobby-category"]}</td>
+                  <th className="space-x-3">
+                    <button>
+                      <Link
+                        to={`/group/${group._id}`}
+                        className=" border-none btn-xs">
+                        <FaEye
+                          color="green"
+                          title="Edit this Group information"
+                          size={26}
+                        />
+                      </Link>
+                    </button>
+                    <button
+                      onClick={() => openModal(group._id)}
+                      className=" border-none btn-xs">
+                      <FaEdit
+                        color="gray"
+                        title="Edit this Group information"
+                        size={26}
+                      />
+                    </button>
+                    <button
+                      onClick={() => handleDelete(group._id)}
+                      className=" border-none btn-xs">
+                      <MdDeleteOutline
+                        color="red"
+                        title="Are you want to delete this ?"
+                        size={26}
+                      />
+                    </button>
+                  </th>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className="flex flex-col items-center h-[50vh] justify-center gap-5">
+          <h2 className="text-4xl">You Haven't Created any groups</h2>
+          <Link
+            className="btn bg-primary text-white border-none "
+            to={"/create-group"}>
+            Create Group
+          </Link>
+        </div>
+      )}
       {/* MOdal Popup */}
       <dialog ref={modalBox} id="my_modal_7" className="modal">
         <Toaster></Toaster>

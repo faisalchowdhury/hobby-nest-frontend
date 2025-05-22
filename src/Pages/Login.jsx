@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
-import { Link } from "react-router";
+import { Link, Navigate, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const { loginUser, user, loginWithGoogle } = useContext(AuthContext);
-  console.log(user);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLoginUser = (e) => {
     e.preventDefault();
@@ -14,9 +16,24 @@ const Login = () => {
     const password = form.password.value;
 
     loginUser(email, password)
-      .then((result) => console.log(result))
+      .then((result) => {
+        if (result.user) {
+          toast.success("Successfully logged in");
+          navigate(location.state || "/");
+        }
+      })
       .catch((err) => console.dir(err));
   };
+
+  const googleLogin = () => {
+    loginWithGoogle()
+      .then((result) => {
+        toast.success("Successfully logged in");
+        navigate(location.state || "/");
+      })
+      .catch((err) => console.dir(err));
+  };
+
   return (
     <div>
       <div className="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-50 dark:text-gray-800 mx-auto my-10">
@@ -55,7 +72,7 @@ const Login = () => {
         </div>
         <div className="flex justify-center space-x-4">
           <button
-            onClick={loginWithGoogle}
+            onClick={googleLogin}
             className="btn bg-white w-full text-black border-[#e5e5e5]">
             <svg
               aria-label="Google logo"
