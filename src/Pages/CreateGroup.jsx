@@ -27,6 +27,7 @@ const CreateGroup = () => {
       .then((data) => {
         console.log(data);
         toast.success("Group Created Successfully");
+        form.reset();
       });
   };
   return (
@@ -80,10 +81,10 @@ const CreateGroup = () => {
           />
         </div>
         <div>
-          <label htmlFor="">Start Date</label>
+          <label htmlFor="">End Date</label>
           <input
-            name="start-date"
-            type="text"
+            name="end_date"
+            type="date"
             placeholder="Start Date"
             className="input border border-slate-300 rounded-full w-full"
           />
@@ -102,7 +103,7 @@ const CreateGroup = () => {
           <input
             name="user_name"
             type="text"
-            value={user.displayName}
+            value={user?.displayName}
             readOnly
             className="input border border-slate-300 rounded-full w-full"
           />
@@ -112,7 +113,7 @@ const CreateGroup = () => {
           <input
             name="user_email"
             type="text"
-            value={user.email}
+            value={user?.email}
             readOnly
             className="input border border-slate-300 rounded-full w-full "
           />

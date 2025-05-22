@@ -12,9 +12,9 @@ const Header = () => {
   const menu = (
     <>
       <NavLink to={"/"}>Home</NavLink>
-      <NavLink>All Groups</NavLink>
+      <NavLink to={"/all-groups"}>All Groups</NavLink>
       <NavLink to={"/create-group"}>Create Group</NavLink>
-      <NavLink>My Groups</NavLink>
+      <NavLink to={"/my-groups"}>My Groups</NavLink>
     </>
   );
   return (

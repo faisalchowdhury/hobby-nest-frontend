@@ -1,6 +1,7 @@
 import React from "react";
 import Slider from "../Component/Slider";
 import CountUp from "react-countup";
+import { Link } from "react-router";
 import { PiShareNetwork, PiUsersThreeFill } from "react-icons/pi";
 import { SiReadthedocs } from "react-icons/si";
 import { useLoaderData } from "react-router";
@@ -11,60 +12,24 @@ const Home = () => {
   return (
     <div>
       <Slider></Slider>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 py-5">
-        <div className="border border-gray-700 rounded-lg p-5 bg-slate-100 shadow hover:shadow-xl hover:-translate-y-1 transition-all">
-          <h2 className="text-lg">Drawing & Painting Hub</h2>
-          <p>Start Date : 12/02/2025</p>
-          <p>
-            Description : Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Eius dicta quaerat nesciunt at error .
-          </p>
-        </div>
 
-        <div className="border border-gray-700 rounded-lg p-5 bg-slate-100 shadow hover:shadow-xl hover:-translate-y-1 transition-all">
-          <h2 className="text-lg">Drawing & Painting Hub</h2>
-          <p>Start Date : 12/02/2025</p>
-          <p>
-            Description : Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Eius dicta quaerat nesciunt at error .
-          </p>
-        </div>
+      <h2 className="mt-10 text-4xl">Ongoing Groups</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 py-5 ">
+        {data.map((group) => (
+          <div
+            key={group._id}
+            className="border border-gray-700 rounded-lg p-5 bg-slate-100 shadow hover:shadow-xl hover:-translate-y-1 transition-all space-y-2">
+            <h2 className="text-2xl">{group.group_name}</h2>
+            <p>End Date : {group.end_date}</p>
+            <p>Description :{group.description.slice(0, 130)}...</p>
 
-        <div className="border border-gray-700 rounded-lg p-5 bg-slate-100 shadow hover:shadow-xl hover:-translate-y-1 transition-all">
-          <h2 className="text-lg">Drawing & Painting Hub</h2>
-          <p>Start Date : 12/02/2025</p>
-          <p>
-            Description : Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Eius dicta quaerat nesciunt at error .
-          </p>
-        </div>
-
-        <div className="border border-gray-700 rounded-lg p-5 bg-slate-100 shadow hover:shadow-xl hover:-translate-y-1 transition-all">
-          <h2 className="text-lg">Drawing & Painting Hub</h2>
-          <p>Start Date : 12/02/2025</p>
-          <p>
-            Description : Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Eius dicta quaerat nesciunt at error .
-          </p>
-        </div>
-
-        <div className="border border-gray-700 rounded-lg p-5 bg-slate-100 shadow hover:shadow-xl hover:-translate-y-1 transition-all">
-          <h2 className="text-lg">Drawing & Painting Hub</h2>
-          <p>Start Date : 12/02/2025</p>
-          <p>
-            Description : Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Eius dicta quaerat nesciunt at error .
-          </p>
-        </div>
-
-        <div className="border border-gray-700 rounded-lg p-5 bg-slate-100 shadow hover:shadow-xl hover:-translate-y-1 transition-all">
-          <h2 className="text-lg">Drawing & Painting Hub</h2>
-          <p>Start Date : 12/02/2025</p>
-          <p>
-            Description : Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Eius dicta quaerat nesciunt at error .
-          </p>
-        </div>
+            <Link
+              to={`/group/${group._id}`}
+              className="btn bg-primary text-white hover:bg-black">
+              View Group
+            </Link>
+          </div>
+        ))}
       </div>
 
       {/* Popular Hobbies */}
