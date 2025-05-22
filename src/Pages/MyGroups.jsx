@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 const MyGroups = () => {
   const { user } = useContext(AuthContext);
   const [groups, setGroups] = useState([]);
@@ -15,7 +17,30 @@ const MyGroups = () => {
   // Handle delete ;
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:3000/delete/${id}`);
+    Swal.fire({
+      title: "Do you want to delete this group ?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Delete",
+      denyButtonText: `Don't Delete`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/delete/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount) {
+              const newGroups = groups.filter((group) => group._id != id);
+
+              setGroups(newGroups);
+
+              Swal.fire("Deleted", "", "success");
+            }
+          });
+      }
+    });
   };
   return (
     <div className="my-5">
