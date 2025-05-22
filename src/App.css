@@ -47,7 +47,13 @@
 .swiper-button-next:after {
   font-size: 14px !important;
 }
-
+tr {
+  border: 1px solid #ddd;
+}
+tr:hover {
+  background: #004122;
+  color: #fff;
+}
 @media screen and (max-width: 420px) {
   .swiper-slide img {
     height: 150px;
