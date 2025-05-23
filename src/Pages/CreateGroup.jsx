@@ -38,6 +38,7 @@ const CreateGroup = () => {
           <div>
             <label htmlFor="">Group name</label>
             <input
+              required
               name="group_name"
               type="text"
               placeholder="Type group name"
@@ -47,6 +48,7 @@ const CreateGroup = () => {
           <div>
             <label htmlFor="">Hobby Category </label>
             <select
+              required
               name="hobby-category"
               defaultValue="Choose a hobby"
               className="select border border-slate-300 rounded-full w-full">
@@ -66,6 +68,7 @@ const CreateGroup = () => {
           <div>
             <label htmlFor="">Meeting Location</label>
             <input
+              required
               name="location"
               type="text"
               placeholder="Meeting location"
@@ -75,6 +78,7 @@ const CreateGroup = () => {
           <div>
             <label htmlFor="">Max member</label>
             <input
+              required
               name="max-member"
               type="text"
               placeholder="Max member"
@@ -84,6 +88,7 @@ const CreateGroup = () => {
           <div>
             <label htmlFor="">End Date</label>
             <input
+              required
               name="end_date"
               type="date"
               placeholder="Start Date"
@@ -93,6 +98,7 @@ const CreateGroup = () => {
           <div>
             <label htmlFor="">Image Url</label>
             <input
+              required
               name="image_url"
               type="text"
               placeholder="Image Url"
@@ -102,6 +108,7 @@ const CreateGroup = () => {
           <div>
             <label htmlFor="">User Name</label>
             <input
+              required
               name="user_name"
               type="text"
               value={user?.displayName}
@@ -112,6 +119,7 @@ const CreateGroup = () => {
           <div>
             <label htmlFor="">User Email</label>
             <input
+              required
               name="user_email"
               type="text"
               value={user?.email}
@@ -123,11 +131,13 @@ const CreateGroup = () => {
           <div className="md:col-span-3 ">
             <label htmlFor="">Description</label>
             <textarea
+              required
               ref={textArea}
               className="textarea border border-slate-300 rounded-lg w-full "
               placeholder="Bio"></textarea>
           </div>
           <input
+            required
             type="submit"
             className="rounded-full w-full bg-primary text-white md:col-span-3 p-3"
             value={"Submit"}

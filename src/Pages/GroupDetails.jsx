@@ -3,7 +3,23 @@ import { useLoaderData } from "react-router";
 
 const GroupDetails = () => {
   const data = useLoaderData();
-  console.log(data);
+
+  const groupDateStr = data.end_date;
+  const groupDate = new Date(groupDateStr);
+
+  //Get todays date
+
+  const today = new Date();
+  console.log("Actual Today:", today.toString());
+
+  today.setHours(0, 0, 0, 0);
+  groupDate.setHours(0, 0, 0, 0);
+
+  const isGroupActive = groupDate >= today;
+
+  // console.log(isGroupActive);
+  console.log(today);
+  // console.log(groupDate);
   return (
     <div className="">
       <div className="max-w-5xl mx-auto space-y-2 bg-slate-50 p-10 rounded-2xl shadow">
@@ -22,9 +38,17 @@ const GroupDetails = () => {
         <p className="text-xl">Group Admin : {data.user_name}</p>
         <p className="text-xl">Admin Contact : {data.user_email}</p>
         <p className="text-xl">Description : {data.description}</p>
-        <button className="btn bg-primary border-none text-lg mt-5 text-white">
-          Join Now
-        </button>
+
+        {isGroupActive ? (
+          <button className="btn bg-primary border-none text-lg mt-5 text-white">
+            Join Now
+          </button>
+        ) : (
+          <p className="text-red-600 text-xl">
+            Group ending date is expired at {data.end_date}, you cant join this
+            group
+          </p>
+        )}
       </div>
     </div>
   );

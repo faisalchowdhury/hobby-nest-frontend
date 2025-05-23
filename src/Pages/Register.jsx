@@ -17,11 +17,22 @@ const Register = () => {
       formData.entries()
     );
 
-    registerUser(email, password).then((result) => {
-      if (result.user) {
-        updateUserProfile(restField).then(() => console.log("profile Updated"));
-      }
-    });
+    const regEx = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+
+    if (!regEx.test(password)) {
+      toast.error(
+        "Must have an Uppercase letter one Lowercase letter and Length must be at least 6 character"
+      );
+    } else {
+      registerUser(email, password).then((result) => {
+        if (result.user) {
+          updateUserProfile(restField).then(() => {
+            toast.success("Account Created Successfully");
+            navigate("/");
+          });
+        }
+      });
+    }
   };
 
   const googleLogin = () => {

@@ -8,7 +8,7 @@ import { useLoaderData } from "react-router";
 
 const Home = () => {
   const data = useLoaderData();
-  console.log(data);
+
   return (
     <div>
       <Slider></Slider>
@@ -21,6 +21,12 @@ const Home = () => {
             className="border border-gray-700 rounded-lg p-5 bg-slate-100 shadow hover:shadow-xl hover:-translate-y-1 transition-all space-y-2">
             <h2 className="text-2xl">{group.group_name}</h2>
             <p>End Date : {group.end_date}</p>
+            <p className="text-xl">
+              <span className="bg-primary text-white px-2">
+                {" "}
+                Group Category : {group["hobby-category"]}
+              </span>
+            </p>
             <p>Description :{group.description.slice(0, 130)}...</p>
 
             <Link
