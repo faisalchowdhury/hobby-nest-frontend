@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Slider from "../Component/Slider";
 import CountUp from "react-countup";
 import { Link } from "react-router";
@@ -6,9 +6,11 @@ import { PiShareNetwork, PiUsersThreeFill } from "react-icons/pi";
 import { SiReadthedocs } from "react-icons/si";
 import { useLoaderData } from "react-router";
 import { Typewriter } from "react-simple-typewriter";
+import { ThemeContext } from "../Context/ThemeContext";
 
 const Home = () => {
   const data = useLoaderData();
+  const { darkMode } = useContext(ThemeContext);
 
   return (
     <div>
@@ -41,7 +43,9 @@ const Home = () => {
         {data.map((group) => (
           <div
             key={group._id}
-            className="border border-gray-700 rounded-lg p-5 bg-slate-100 shadow hover:shadow-xl hover:-translate-y-1 transition-all space-y-2">
+            className={`${
+              darkMode === true ? "bg-black" : "bg-slate-100"
+            } border border-gray-700 rounded-lg p-5  shadow hover:shadow-xl hover:-translate-y-1 transition-all space-y-2`}>
             <h2 className="text-2xl">{group.group_name}</h2>
             <p>End Date : {group.end_date}</p>
             <p className="text-xl">
@@ -102,7 +106,9 @@ const Home = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 py-40">
         <div
           style={{ boxShadow: "-15px 15px 0px 0px #004122" }}
-          className="text-center bg-white px-5 py-20 relative rounded-t-2xl  hover:-translate-y-5 transition duration-500 border-5 border-b-0">
+          className={`text-center ${
+            darkMode === true ? "bg-black" : "bg-white"
+          }  px-5 py-20 relative rounded-t-2xl  hover:-translate-y-5 transition duration-500 border-5 border-b-0`}>
           <div className="absolute flex justify-center items-center -top-15 left-0 right-0 bg-white border-5 border-#004122 w-[120px] h-[120px] mx-auto rounded-full">
             <PiShareNetwork color="#004122" size={80} />
           </div>
@@ -115,7 +121,9 @@ const Home = () => {
 
         <div
           style={{ boxShadow: "-15px 15px 0px 0px purple" }}
-          className="text-center bg-white px-10 py-20 relative rounded-t-2xl  hover:-translate-y-5 transition duration-500 border-5 border-b-0">
+          className={`text-center ${
+            darkMode === true ? "bg-black" : "bg-white"
+          }  px-5 py-20 relative rounded-t-2xl  hover:-translate-y-5 transition duration-500 border-5 border-b-0`}>
           <div className="absolute flex justify-center items-center -top-15 left-0 right-0 bg-white border-5 border-#004122 w-[120px] h-[120px] mx-auto rounded-full">
             <SiReadthedocs color="#004122" size={80} />
           </div>
@@ -128,7 +136,9 @@ const Home = () => {
 
         <div
           style={{ boxShadow: "-15px 15px 0px 0px orange" }}
-          className="text-center bg-white px-10 py-20 relative rounded-t-2xl  hover:-translate-y-5 transition duration-500 border-5 border-b-0">
+          className={`text-center ${
+            darkMode === true ? "bg-black" : "bg-white"
+          }  px-5 py-20 relative rounded-t-2xl  hover:-translate-y-5 transition duration-500 border-5 border-b-0`}>
           <div className="absolute flex justify-center items-center -top-15 left-0 right-0 bg-white border-5 border-#004122 w-[120px] h-[120px] mx-auto rounded-full">
             <PiUsersThreeFill color="#004122" size={80} />
           </div>

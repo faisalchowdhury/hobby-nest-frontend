@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router";
+import { ThemeContext } from "../Context/ThemeContext";
 
 const GroupCard = ({ group }) => {
+  const { darkMode } = useContext(ThemeContext);
   return (
     <div>
       <div
         key={group._id}
-        className=" rounded-lg  bg-slate-100 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all space-y-3 ">
+        className={`${
+          darkMode === true ? "bg-black" : "bg-slate-100"
+        } border border-gray-700 rounded-lg p-5  shadow hover:shadow-xl hover:-translate-y-1 transition-all space-y-3`}>
         <img
           className="w-full h-[200px] object-cover rounded-t-lg"
           src={group.image_url}

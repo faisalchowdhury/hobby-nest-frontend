@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import logo from "../assets/logo.png";
+import darkLogo from "../assets/logo-dark.png";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 import { signOut } from "firebase/auth";
@@ -7,8 +8,14 @@ import { auth } from "../Firebase/firebase";
 import { Tooltip } from "react-tooltip";
 import { Toaster } from "react-hot-toast";
 
+import { ThemeContext } from "../Context/ThemeContext";
+import { CiLight } from "react-icons/ci";
+import { MdDarkMode } from "react-icons/md";
+
 const Header = () => {
   const { user } = useContext(AuthContext);
+
+  const { darkMode, setDarkMode } = useContext(ThemeContext);
   const menu = (
     <>
       <NavLink to={"/"}>Home</NavLink>
@@ -54,7 +61,7 @@ const Header = () => {
             {menu}
           </ul>
         </div>
-        <div className="navbar-end text-lg">
+        <div className="navbar-end text-lg space-x-2">
           {!user ? (
             <Link
               className="btn bg-primary border-none text-white px-10 rounded-full hover:bg-black text-lg shadow"
@@ -79,6 +86,14 @@ const Header = () => {
               </div>
             </>
           )}
+
+          <button onClick={() => setDarkMode(!darkMode)}>
+            {darkMode ? (
+              <CiLight color="white" size={26} />
+            ) : (
+              <MdDarkMode size={26} />
+            )}
+          </button>
         </div>
       </div>
     </div>

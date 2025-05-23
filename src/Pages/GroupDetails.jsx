@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useLoaderData } from "react-router";
+import { ThemeContext } from "../Context/ThemeContext";
 
 const GroupDetails = () => {
   const data = useLoaderData();
@@ -10,20 +11,20 @@ const GroupDetails = () => {
   //Get todays date
 
   const today = new Date();
-  console.log("Actual Today:", today.toString());
 
   today.setHours(0, 0, 0, 0);
   groupDate.setHours(0, 0, 0, 0);
 
   const isGroupActive = groupDate >= today;
+  const { darkMode } = useContext(ThemeContext);
 
-  // console.log(isGroupActive);
-  console.log(today);
-  // console.log(groupDate);
   return (
     <div className="">
       <title>{data.group_name}</title>
-      <div className="max-w-5xl mx-auto space-y-2 bg-slate-50 p-10 rounded-2xl shadow">
+      <div
+        className={`max-w-5xl mx-auto space-y-2 ${
+          darkMode === true ? "bg-slate-900" : "bg-slate-100"
+        }   p-10 rounded-2xl shadow`}>
         <img
           className="w-full h-[300px] object-cover object-top rounded-lg"
           src={data.image_url}

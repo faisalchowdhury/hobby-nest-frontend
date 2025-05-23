@@ -64,3 +64,13 @@ a.active {
     height: 150px;
   }
 }
+
+.dark {
+  background: #0f172b;
+  color: white;
+}
+
+.light {
+  background: #fff;
+  color: black;
+}

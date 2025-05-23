@@ -5,11 +5,11 @@ import { MdDeleteOutline } from "react-icons/md";
 import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
+import { ThemeContext } from "../Context/ThemeContext";
 const MyGroups = () => {
   const { user } = useContext(AuthContext);
   const [groups, setGroups] = useState([]);
-
-  console.log(user?.email);
+  const { darkMode } = useContext(ThemeContext);
   useEffect(() => {
     fetch(`https://hobbynest-server.vercel.app/my-groups/${user?.email}`)
       .then((res) => res.json())
@@ -86,7 +86,6 @@ const MyGroups = () => {
         } else if (data.modifiedCount === 0) {
           toast.error("You haven't change any field");
         }
-        console.log(data);
       });
   };
   return (
@@ -185,7 +184,10 @@ const MyGroups = () => {
       {/* MOdal Popup */}
       <dialog ref={modalBox} id="my_modal_7" className="modal">
         <Toaster></Toaster>
-        <div className=" bg-white w-5xl p-5 relative">
+        <div
+          className={`max-w-5xl mx-auto ${
+            darkMode === true ? "bg-slate-900" : "bg-slate-100"
+          }  p-5 rounded-sm space-y-5 my-10 w-5xl p-5 relative`}>
           <h2 className="text-3xl my-5">Update Group</h2>
           <form
             onSubmit={() => handleUpdateGroup(dataToUpdate._id)}

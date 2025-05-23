@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../assets/logo.png";
 import { Link, NavLink } from "react-router";
 import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
+import { ThemeContext } from "../Context/ThemeContext";
 const Footer = () => {
+  const { darkMode } = useContext(ThemeContext);
   return (
     <div className="mt-10">
-      <footer className="pt-20 divide-y  dark:bg-gray-100 dark:text-gray-800">
+      <footer
+        className={`pt-20 divide-y  ${
+          darkMode ? "bg-slate-800 text-gray-50" : "bg-gray-100 text-gray-800"
+        } `}>
         <div className="max-w-7xl flex gap-10  justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0 px-5 lg:px-0">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 text-sm gap-x-3 gap-y-8  sm:grid-cols-4">
             <div className="">
@@ -21,7 +26,7 @@ const Footer = () => {
               </p>
             </div>
             <div className="space-y-3">
-              <h3 className="tracking-wide text-xl uppercase dark:text-gray-900">
+              <h3 className="tracking-wide text-xl uppercase ">
                 Important Links
               </h3>
               <div className="flex flex-col text-lg">
@@ -33,9 +38,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="space-y-3">
-              <div className="uppercase text-xl dark:text-gray-900">
-                Social media
-              </div>
+              <div className="uppercase text-xl ">Social media</div>
               <div className="flex justify-start space-x-3">
                 <a
                   rel="noopener noreferrer"
@@ -64,9 +67,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="space-y-3">
-              <h3 className="tracking-wide text-xl uppercase dark:text-gray-900">
-                Get In Touch
-              </h3>
+              <h3 className="tracking-wide text-xl uppercase ">Get In Touch</h3>
 
               <form action="">
                 <div className="join">

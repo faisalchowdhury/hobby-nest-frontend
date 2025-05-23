@@ -1,10 +1,12 @@
 import React, { use, useContext, useRef } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../Context/AuthContext";
+import { ThemeContext } from "../Context/ThemeContext";
 
 const CreateGroup = () => {
   const textArea = useRef("");
   const { user } = useContext(AuthContext);
+  const { darkMode } = useContext(ThemeContext);
   const handleCreateGroup = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -25,13 +27,15 @@ const CreateGroup = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         toast.success("Group Created Successfully");
         form.reset();
       });
   };
   return (
-    <div className="max-w-5xl mx-auto bg-slate-100 p-5 rounded-sm space-y-5 my-10">
+    <div
+      className={`max-w-5xl mx-auto ${
+        darkMode === true ? "bg-slate-900" : "bg-slate-100"
+      }  p-5 rounded-sm space-y-5 my-10`}>
       <title>Create Group</title>
       <h2 className="text-2xl">Create a group</h2>
       <form onSubmit={handleCreateGroup}>
