@@ -16,7 +16,7 @@ const CreateGroup = () => {
       description: textAreaData,
     };
 
-    fetch("http://localhost:3000/create-group", {
+    fetch("https://hobbynest-server.vercel.app/create-group", {
       method: "POST",
       headers: {
         "content-type": "application/json",
