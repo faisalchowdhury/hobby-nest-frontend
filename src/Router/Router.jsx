@@ -9,6 +9,8 @@ import GroupDetails from "../Pages/GroupDetails";
 import AllGroups from "../Pages/AllGroups";
 import MyGroups from "../Pages/MyGroups";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import NotFound from "../Pages/NotFound";
+import Loading from "../Component/Loading";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +22,7 @@ export const router = createBrowserRouter([
         index: true,
         Component: Home,
         loader: () => fetch("http://localhost:3000/sorted-groups"),
+        hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "login",
@@ -42,11 +45,13 @@ export const router = createBrowserRouter([
         Component: GroupDetails,
         loader: ({ params }) =>
           fetch(`http://localhost:3000/group/${params.id}`),
+        hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "all-groups",
         Component: AllGroups,
         loader: () => fetch("http://localhost:3000/all-groups"),
+        hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "my-groups",
@@ -55,6 +60,10 @@ export const router = createBrowserRouter([
             <MyGroups></MyGroups>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "*",
+        Component: NotFound,
       },
     ],
   },

@@ -8,7 +8,7 @@ const RegularLayout = () => {
   return (
     <div>
       <Header></Header>
-      <div className="max-w-7xl mx-auto my-6">
+      <div className="max-w-7xl mx-auto my-6 px-5 lg:px-0">
         <Outlet></Outlet>
       </div>
 
