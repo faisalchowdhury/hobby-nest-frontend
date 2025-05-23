@@ -5,15 +5,38 @@ import { Link } from "react-router";
 import { PiShareNetwork, PiUsersThreeFill } from "react-icons/pi";
 import { SiReadthedocs } from "react-icons/si";
 import { useLoaderData } from "react-router";
+import { Typewriter } from "react-simple-typewriter";
 
 const Home = () => {
   const data = useLoaderData();
 
   return (
     <div>
+      <title>Hobbynest</title>
       <Slider></Slider>
 
-      <h2 className="mt-10 text-4xl">Ongoing Groups</h2>
+      <h2 className="mt-10 text-4xl">
+        Join Ongoing groups
+        <span className="text-[#02BE60]">
+          <Typewriter
+            words={[
+              "",
+              ` ${data[0].group_name}`,
+              ` ${data[1].group_name}`,
+              ` ${data[2].group_name}`,
+              ` ${data[3].group_name}`,
+              ` ${data[4].group_name}`,
+              ` ${data[5].group_name}`,
+              ,
+            ]}
+            loop={100}
+            cursor
+            cursorStyle="|"
+            typeSpeed={50}
+            deleteSpeed={30}
+          />
+        </span>
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 py-5 ">
         {data.map((group) => (
           <div
@@ -49,22 +72,27 @@ const Home = () => {
         </div>
         <div className="popular-hobby grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="bg-primary text-white p-10 rounded-xl space-y-3">
-            <h2 className="text-2xl">Drawing & Painting Hub</h2>
+            <h2 className="text-2xl">Creative Arts & DIY</h2>
             <h1 className="text-3xl font-semibold">
-              Check the current status of Upwork services
+              Join crafters and creators to share projects and spark ideas.
             </h1>
-            <button className="btn border-none bg-white rounded-md text-black hover:bg-black hover:text-white">
-              Join Now
-            </button>
+            <Link
+              to={"/login"}
+              className="btn border-none bg-white rounded-md text-black hover:bg-black hover:text-white">
+              Join Us
+            </Link>
           </div>
           <div className="bg-slate-200 text-black p-10 rounded-xl space-y-3">
-            <h2 className="text-2xl">Drawing & Painting Hub</h2>
+            <h2 className="text-2xl">Outdoor Adventures</h2>
             <h1 className="text-3xl font-semibold">
-              Check the current status of Upwork services
+              Love the outdoors? Rally your fellow explorers or build your own
+              adventure group today.
             </h1>
-            <button className="btn border-none bg-white rounded-md text-black hover:bg-black hover:text-white">
-              Join Now
-            </button>
+            <Link
+              to={"/login"}
+              className="btn border-none bg-white rounded-md text-black hover:bg-black hover:text-white">
+              Join Us
+            </Link>
           </div>
         </div>
       </div>

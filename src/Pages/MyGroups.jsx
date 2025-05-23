@@ -91,6 +91,7 @@ const MyGroups = () => {
   };
   return (
     <div className="my-5">
+      <title>My Groups</title>
       {groups.length > 0 ? (
         <div className="overflow-x-auto">
           <table className="table">

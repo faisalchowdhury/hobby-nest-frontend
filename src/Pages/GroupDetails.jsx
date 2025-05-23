@@ -22,6 +22,7 @@ const GroupDetails = () => {
   // console.log(groupDate);
   return (
     <div className="">
+      <title>{data.group_name}</title>
       <div className="max-w-5xl mx-auto space-y-2 bg-slate-50 p-10 rounded-2xl shadow">
         <img
           className="w-full h-[300px] object-cover object-top rounded-lg"

@@ -32,6 +32,7 @@ const CreateGroup = () => {
   };
   return (
     <div className="max-w-5xl mx-auto bg-slate-100 p-5 rounded-sm space-y-5 my-10">
+      <title>Create Group</title>
       <h2 className="text-2xl">Create a group</h2>
       <form onSubmit={handleCreateGroup}>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
