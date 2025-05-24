@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import { useLoaderData } from "react-router";
 import { ThemeContext } from "../Context/ThemeContext";
+import { AuthContext } from "../Context/AuthContext";
+import toast from "react-hot-toast";
 
 const GroupDetails = () => {
   const data = useLoaderData();
-
+  const { user } = useContext(AuthContext);
   const groupDateStr = data.end_date;
   const groupDate = new Date(groupDateStr);
 
@@ -17,7 +19,13 @@ const GroupDetails = () => {
 
   const isGroupActive = groupDate >= today;
   const { darkMode } = useContext(ThemeContext);
-
+  const handleJoin = () => {
+    if (user) {
+      toast.success(`Congratulation ,  welcome to ${data.group_name}`);
+    } else {
+      toast.error("You have to login to join any group");
+    }
+  };
   return (
     <div className="">
       <title>{data.group_name}</title>
@@ -42,7 +50,9 @@ const GroupDetails = () => {
         <p className="text-xl">Description : {data.description}</p>
 
         {isGroupActive ? (
-          <button className="btn bg-primary border-none text-lg mt-5 text-white">
+          <button
+            onClick={handleJoin}
+            className="btn bg-primary border-none text-lg mt-5 text-white">
             Join Now
           </button>
         ) : (

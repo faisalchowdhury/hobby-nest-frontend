@@ -185,13 +185,13 @@ const MyGroups = () => {
       <dialog ref={modalBox} id="my_modal_7" className="modal">
         <Toaster></Toaster>
         <div
-          className={`max-w-5xl mx-auto ${
+          className={`max-w-5xl  mx-auto ${
             darkMode === true ? "bg-slate-900" : "bg-slate-100"
-          }  p-5 rounded-sm space-y-5 my-10 w-5xl p-5 relative`}>
+          }  p-5 rounded-sm space-y-5 my-10 max-w-5xl p-5 relative`}>
           <h2 className="text-3xl my-5">Update Group</h2>
           <form
             onSubmit={() => handleUpdateGroup(dataToUpdate._id)}
-            className="grid grid-cols-3 gap-3"
+            className="md:grid grid-cols-1 md:grid-cols-3 gap-5"
             method="dialog">
             <div>
               <label htmlFor="">Group name</label>
