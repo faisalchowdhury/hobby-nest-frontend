@@ -1,7 +1,35 @@
 import React from "react";
-import ContactInputBox from "../Component/Contact/ContactInputBox";
-import ContactTextArea from "../Component/Contact/ContactTextArea";
+
+import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+
 const Contact = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const contactFormSubmit = (data) => {
+    Swal.fire({
+      title: "Do you want to send this message?",
+      text: `Name : ${data.name}
+      Email : ${data.email}
+      Phone : ${data.phone}
+      Message : ${data.message}
+      `,
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire("Sent!", "", "successfully");
+      } else if (result.isDenied) {
+        Swal.fire("You message have been refuse", "", "info");
+      }
+    });
+  };
   return (
     <>
       <section className="relative overflow-hidden bg-white py-20 dark:bg-dark lg:py-[120px]">
@@ -107,28 +135,60 @@ const Contact = () => {
             </div>
             <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
               <div className="relative rounded-lg bg-white p-8 shadow-lg dark:bg-dark-2 sm:p-12">
-                <form>
-                  <ContactInputBox
-                    type="text"
-                    name="name"
-                    placeholder="Your Name"
-                  />
-                  <ContactInputBox
-                    type="text"
-                    name="email"
-                    placeholder="Your Email"
-                  />
-                  <ContactInputBox
-                    type="text"
-                    name="phone"
-                    placeholder="Your Phone"
-                  />
-                  <ContactTextArea
-                    row="6"
-                    placeholder="Your Message"
-                    name="details"
-                    defaultValue=""
-                  />
+                <form onClick={handleSubmit(contactFormSubmit)}>
+                  <div className="mb-6">
+                    <input
+                      type="text"
+                      placeholder="Write Your Name"
+                      name="name"
+                      className="w-full rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6"
+                      {...register("name", { required: true })}
+                    />
+                    <p className="text-red-500">
+                      {errors.name?.type === "required" &&
+                        "**Name field must not be empty"}
+                    </p>
+                  </div>
+
+                  <div className="mb-6">
+                    <input
+                      type="text"
+                      placeholder="Write Your email "
+                      name="email"
+                      className="w-full rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6"
+                      {...register("email", { required: true })}
+                    />
+                    <p className="text-red-500">
+                      {errors.name?.type === "required" &&
+                        "**Email field must not be empty"}
+                    </p>
+                  </div>
+                  <div className="mb-6">
+                    <input
+                      type="text"
+                      placeholder="Write Your Phone Number"
+                      name="phone"
+                      className="w-full rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6"
+                      {...register("phone", { required: true })}
+                    />
+                    <p className="text-red-500">
+                      {errors.name?.type === "required" &&
+                        "**Phone field must not be empty"}
+                    </p>
+                  </div>
+                  <div className="mb-6">
+                    <textarea
+                      rows="5"
+                      placeholder="White Your Message"
+                      name="details"
+                      className="w-full resize-none rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6"
+                      {...register("message", { required: true })}
+                    />
+                    <p className="text-red-500">
+                      {errors.name?.type === "required" &&
+                        "**Message field must not be empty"}
+                    </p>
+                  </div>
                   <div>
                     <button
                       type="submit"
