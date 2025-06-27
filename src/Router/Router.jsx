@@ -12,6 +12,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import NotFound from "../Pages/NotFound";
 import Loading from "../Component/Loading";
 import Contact from "../Pages/Contact";
+import Aboutus from "../Pages/Aboutus";
 
 export const router = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
       {
         path: "contact",
         Component: Contact,
+      },
+      {
+        path: "aboutus",
+        Component: Aboutus,
       },
       {
         path: "*",

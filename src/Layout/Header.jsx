@@ -23,10 +23,14 @@ const Header = () => {
       <NavLink to={"/create-group"}>Create Group</NavLink>
       <NavLink to={"/my-groups"}>My Groups</NavLink>
       <NavLink to={"/contact"}>Contact</NavLink>
+      <NavLink to={"/aboutus"}>About us</NavLink>
     </>
   );
   return (
-    <div className="sticky top-0 z-10 bg-slate-50">
+    <div
+      className={`sticky top-0 z-10 ${
+        darkMode == true ? "bg-slate-700" : "bg-slate-50"
+      } `}>
       <Toaster />
       <div className="navbar bg-base-100 max-w-7xl mx-auto">
         <div className="navbar-start">
@@ -89,11 +93,7 @@ const Header = () => {
           )}
 
           <button onClick={() => setDarkMode(!darkMode)}>
-            {darkMode ? (
-              <CiLight color="white" size={26} />
-            ) : (
-              <MdDarkMode size={26} />
-            )}
+            {darkMode ? <CiLight size={26} /> : <MdDarkMode size={26} />}
           </button>
         </div>
       </div>

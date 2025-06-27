@@ -22,7 +22,6 @@ const Contact = () => {
       confirmButtonText: "Save",
       denyButtonText: `Don't save`,
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         Swal.fire("Sent!", "", "successfully");
       } else if (result.isDenied) {
