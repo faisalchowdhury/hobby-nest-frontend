@@ -30,11 +30,10 @@ const Footer = () => {
                 Important Links
               </h3>
               <div className="flex flex-col text-lg">
-                {" "}
                 <NavLink to={"/"}>Home</NavLink>
                 <NavLink to={"/all-groups"}>All Groups</NavLink>
-                <NavLink to={"/create-group"}>Create Group</NavLink>
-                <NavLink to={"/my-groups"}>My Groups</NavLink>
+                <NavLink to={"/contact"}>Contact</NavLink>
+                <NavLink to={"/aboutus"}>About us</NavLink>
               </div>
             </div>
             <div className="space-y-3">

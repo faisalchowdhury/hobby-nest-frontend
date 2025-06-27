@@ -10,7 +10,7 @@ const Newsletter = () => {
           darkMode === true
             ? "bg-slate-800"
             : "bg-gradient-to-r from-slate-100 to-slate-50"
-        } p-20 rounded space-y-3 `}>
+        } p-10 md:p-20 rounded space-y-3 `}>
         <h2 className="text-2xl">Join Our Newsletter</h2>
         <p>
           Join our newsletter to get hobby inspiration, community highlights,
@@ -34,7 +34,7 @@ const Newsletter = () => {
                 </g>
               </svg>
               <input
-                className="w-[200px]"
+                className="md:w-[200px]"
                 type="email"
                 placeholder="mail@site.com"
                 required

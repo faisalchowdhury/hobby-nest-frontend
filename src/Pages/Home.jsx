@@ -8,6 +8,7 @@ import { useLoaderData } from "react-router";
 import { Typewriter } from "react-simple-typewriter";
 import { ThemeContext } from "../Context/ThemeContext";
 import Newsletter from "../Component/Newsletter";
+import Map from "../Component/Map/Map";
 
 const Home = () => {
   const data = useLoaderData();
@@ -155,6 +156,9 @@ const Home = () => {
       {/* Newsletter */}
       <Newsletter></Newsletter>
       {/* Newsletter */}
+      {/* Map */}
+      <Map></Map>
+      {/* Map */}
     </div>
   );
 };
