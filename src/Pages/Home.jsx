@@ -11,6 +11,7 @@ import { ThemeContext } from "../Context/ThemeContext";
 const Home = () => {
   const data = useLoaderData();
   const { darkMode } = useContext(ThemeContext);
+  console.log(data);
 
   return (
     <div>
@@ -23,12 +24,12 @@ const Home = () => {
           <Typewriter
             words={[
               "",
-              ` ${data[0].group_name}`,
-              ` ${data[1].group_name}`,
-              ` ${data[2].group_name}`,
-              ` ${data[3].group_name}`,
-              ` ${data[4].group_name}`,
-              ` ${data[5].group_name}`,
+              ` ${data[0]?.group_name}`,
+              ` ${data[1]?.group_name}`,
+              ` ${data[2]?.group_name}`,
+              ` ${data[3]?.group_name}`,
+              ` ${data[4]?.group_name}`,
+              ` ${data[5]?.group_name}`,
               ,
             ]}
             loop={100}
@@ -39,7 +40,7 @@ const Home = () => {
           />
         </span>
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 py-5 ">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-5 py-5 ">
         {data.map((group) => (
           <div
             key={group._id}
@@ -59,7 +60,7 @@ const Home = () => {
             <Link
               to={`/group/${group._id}`}
               className="btn bg-primary text-white hover:bg-black">
-              View Group
+              See More
             </Link>
           </div>
         ))}

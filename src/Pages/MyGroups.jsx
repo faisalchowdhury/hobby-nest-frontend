@@ -11,7 +11,7 @@ const MyGroups = () => {
   const [groups, setGroups] = useState([]);
   const { darkMode } = useContext(ThemeContext);
   useEffect(() => {
-    fetch(`https://hobbynest-server.vercel.app/my-groups/${user?.email}`)
+    fetch(`http://localhost:3000/my-groups/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setGroups(data);
@@ -30,7 +30,7 @@ const MyGroups = () => {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        fetch(`https://hobbynest-server.vercel.app/delete/${id}`, {
+        fetch(`http://localhost:3000/delete/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -54,7 +54,7 @@ const MyGroups = () => {
   const openModal = (id) => {
     modalBox.current.showModal();
 
-    fetch(`https://hobbynest-server.vercel.app/group/${id}`)
+    fetch(`http://localhost:3000/group/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setDataToUpdate(data);
@@ -72,7 +72,7 @@ const MyGroups = () => {
       description: textAreaData,
     };
 
-    fetch(`https://hobbynest-server.vercel.app/update/${id}`, {
+    fetch(`http://localhost:3000/update/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

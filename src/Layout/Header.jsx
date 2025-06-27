@@ -22,10 +22,11 @@ const Header = () => {
       <NavLink to={"/all-groups"}>All Groups</NavLink>
       <NavLink to={"/create-group"}>Create Group</NavLink>
       <NavLink to={"/my-groups"}>My Groups</NavLink>
+      <NavLink to={"/contact"}>Contact</NavLink>
     </>
   );
   return (
-    <div>
+    <div className="sticky top-0 z-10 bg-slate-50">
       <Toaster />
       <div className="navbar bg-base-100 max-w-7xl mx-auto">
         <div className="navbar-start">

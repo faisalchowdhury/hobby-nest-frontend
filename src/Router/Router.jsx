@@ -11,6 +11,7 @@ import MyGroups from "../Pages/MyGroups";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import NotFound from "../Pages/NotFound";
 import Loading from "../Component/Loading";
+import Contact from "../Pages/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -21,8 +22,7 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
-        loader: () =>
-          fetch("https://hobbynest-server.vercel.app/sorted-groups"),
+        loader: () => fetch("http://localhost:3000/sorted-groups"),
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
@@ -45,13 +45,13 @@ export const router = createBrowserRouter([
         path: "group/:id",
         Component: GroupDetails,
         loader: ({ params }) =>
-          fetch(`https://hobbynest-server.vercel.app/group/${params.id}`),
+          fetch(`http://localhost:3000/group/${params.id}`),
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "all-groups",
         Component: AllGroups,
-        loader: () => fetch("https://hobbynest-server.vercel.app/all-groups"),
+        loader: () => fetch("http://localhost:3000/all-groups"),
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
@@ -61,6 +61,10 @@ export const router = createBrowserRouter([
             <MyGroups></MyGroups>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "contact",
+        Component: Contact,
       },
       {
         path: "*",
