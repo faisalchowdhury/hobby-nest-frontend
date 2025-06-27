@@ -26,6 +26,16 @@ const Dashboard = () => {
               className="hover:bg-gray-600 px-3 py-2 rounded">
               Create Group
             </NavLink>
+            <NavLink
+              to="/dashboard/my-groups"
+              className="hover:bg-gray-600 px-3 py-2 rounded">
+              My Groups
+            </NavLink>
+            <NavLink
+              to="/dashboard/all-groups"
+              className="hover:bg-gray-600 px-3 py-2 rounded">
+              All Groups
+            </NavLink>
           </nav>
         </aside>
         <main className="flex-1 p-6">

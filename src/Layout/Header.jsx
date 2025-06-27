@@ -20,8 +20,6 @@ const Header = () => {
     <>
       <NavLink to={"/"}>Home</NavLink>
       <NavLink to={"/all-groups"}>All Groups</NavLink>
-      <NavLink to={"/create-group"}>Create Group</NavLink>
-      <NavLink to={"/my-groups"}>My Groups</NavLink>
       <NavLink to={"/contact"}>Contact</NavLink>
       <NavLink to={"/aboutus"}>About us</NavLink>
     </>
@@ -83,6 +81,13 @@ const Header = () => {
                 <Tooltip anchorSelect=".my-tooltip-element" place="top">
                   {user.displayName}
                 </Tooltip>
+
+                <Link
+                  to={"/dashboard"}
+                  className="btn bg-black border-none text-white px-10 rounded-full hover:bg-primary text-lg shadow">
+                  Dashboard
+                </Link>
+
                 <button
                   className="btn bg-primary border-none text-white px-10 rounded-full hover:bg-black text-lg shadow"
                   onClick={() => signOut(auth)}>
