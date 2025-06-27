@@ -7,6 +7,7 @@ import { SiReadthedocs } from "react-icons/si";
 import { useLoaderData } from "react-router";
 import { Typewriter } from "react-simple-typewriter";
 import { ThemeContext } from "../Context/ThemeContext";
+import Newsletter from "../Component/Newsletter";
 
 const Home = () => {
   const data = useLoaderData();
@@ -45,7 +46,7 @@ const Home = () => {
           <div
             key={group._id}
             className={`${
-              darkMode === true ? "bg-black" : "bg-slate-100"
+              darkMode === true ? "bg-slate-800" : "bg-slate-100"
             } border border-gray-700 rounded-lg p-5  shadow hover:shadow-xl hover:-translate-y-1 transition-all space-y-2`}>
             <h2 className="text-2xl">{group.group_name}</h2>
             <p>End Date : {group.end_date}</p>
@@ -108,7 +109,7 @@ const Home = () => {
         <div
           style={{ boxShadow: "-15px 15px 0px 0px #004122" }}
           className={`text-center ${
-            darkMode === true ? "bg-black" : "bg-white"
+            darkMode === true ? "bg-slate-800" : "bg-white"
           }  px-5 py-20 relative rounded-t-2xl  hover:-translate-y-5 transition duration-500 border-5 border-b-0`}>
           <div className="absolute flex justify-center items-center -top-15 left-0 right-0 bg-white border-5 border-#004122 w-[120px] h-[120px] mx-auto rounded-full">
             <PiShareNetwork color="#004122" size={80} />
@@ -123,7 +124,7 @@ const Home = () => {
         <div
           style={{ boxShadow: "-15px 15px 0px 0px purple" }}
           className={`text-center ${
-            darkMode === true ? "bg-black" : "bg-white"
+            darkMode === true ? "bg-slate-800" : "bg-white"
           }  px-5 py-20 relative rounded-t-2xl  hover:-translate-y-5 transition duration-500 border-5 border-b-0`}>
           <div className="absolute flex justify-center items-center -top-15 left-0 right-0 bg-white border-5 border-#004122 w-[120px] h-[120px] mx-auto rounded-full">
             <SiReadthedocs color="#004122" size={80} />
@@ -138,7 +139,7 @@ const Home = () => {
         <div
           style={{ boxShadow: "-15px 15px 0px 0px orange" }}
           className={`text-center ${
-            darkMode === true ? "bg-black" : "bg-white"
+            darkMode === true ? "bg-slate-800" : "bg-white"
           }  px-5 py-20 relative rounded-t-2xl  hover:-translate-y-5 transition duration-500 border-5 border-b-0`}>
           <div className="absolute flex justify-center items-center -top-15 left-0 right-0 bg-white border-5 border-#004122 w-[120px] h-[120px] mx-auto rounded-full">
             <PiUsersThreeFill color="#004122" size={80} />
@@ -150,6 +151,10 @@ const Home = () => {
           <h2 className="text-2xl">2 Million users around the world</h2>
         </div>
       </div>
+
+      {/* Newsletter */}
+      <Newsletter></Newsletter>
+      {/* Newsletter */}
     </div>
   );
 };

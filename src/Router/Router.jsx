@@ -13,6 +13,8 @@ import NotFound from "../Pages/NotFound";
 import Loading from "../Component/Loading";
 import Contact from "../Pages/Contact";
 import Aboutus from "../Pages/Aboutus";
+import Dashboard from "../Dashboard/Dashboard";
+import DashboardDefault from "../Component/DashboardDefault";
 
 export const router = createBrowserRouter([
   {
@@ -34,14 +36,7 @@ export const router = createBrowserRouter([
         path: "register",
         Component: Register,
       },
-      {
-        path: "create-group",
-        element: (
-          <PrivateRoute>
-            <CreateGroup></CreateGroup>
-          </PrivateRoute>
-        ),
-      },
+
       {
         path: "group/:id",
         Component: GroupDetails,
@@ -55,14 +50,7 @@ export const router = createBrowserRouter([
         loader: () => fetch("http://localhost:3000/all-groups"),
         hydrateFallbackElement: <Loading></Loading>,
       },
-      {
-        path: "my-groups",
-        element: (
-          <PrivateRoute>
-            <MyGroups></MyGroups>
-          </PrivateRoute>
-        ),
-      },
+
       {
         path: "contact",
         Component: Contact,
@@ -72,8 +60,44 @@ export const router = createBrowserRouter([
         Component: Aboutus,
       },
       {
+        path: "dashboard",
+        Component: Dashboard,
+      },
+      {
         path: "*",
         Component: NotFound,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+
+    children: [
+      {
+        path: "/dashboard",
+        index: true,
+        element: (
+          <PrivateRoute>
+            <DashboardDefault></DashboardDefault>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/create-group",
+        element: (
+          <PrivateRoute>
+            <CreateGroup></CreateGroup>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/my-groups",
+        element: (
+          <PrivateRoute>
+            <MyGroups></MyGroups>
+          </PrivateRoute>
+        ),
       },
     ],
   },
