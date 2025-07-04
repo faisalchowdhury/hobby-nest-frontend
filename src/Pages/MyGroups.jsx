@@ -6,16 +6,24 @@ import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
 import { ThemeContext } from "../Context/ThemeContext";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 const MyGroups = () => {
   const { user } = useContext(AuthContext);
   const [groups, setGroups] = useState([]);
   const { darkMode } = useContext(ThemeContext);
+  const axiosSecure = useAxiosSecure();
   useEffect(() => {
-    fetch(`https://hobbynest-server.vercel.app/my-groups/${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setGroups(data);
-      });
+    // fetch(`https://hobbynest-server.vercel.app/my-groups/${user?.email}`)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setGroups(data);
+    //   });
+
+    const fetchData = async () => {
+      const res = await axiosSecure.get(`/my-groups/${user?.email}`);
+      setGroups(res.data);
+    };
+    fetchData();
   }, [user]);
 
   // Handle delete ;

@@ -2,11 +2,13 @@ import React, { use, useContext, useRef } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../Context/AuthContext";
 import { ThemeContext } from "../Context/ThemeContext";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const CreateGroup = () => {
   const textArea = useRef("");
   const { user } = useContext(AuthContext);
   const { darkMode } = useContext(ThemeContext);
+  const axiosSecure = useAxiosSecure();
   const handleCreateGroup = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -18,18 +20,16 @@ const CreateGroup = () => {
       description: textAreaData,
     };
 
-    fetch("https://hobbynest-server.vercel.app/create-group", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => {
+    const fetchPostRes = async () => {
+      const res = await axiosSecure.post("/create-group", data);
+      if (res.data.status != 401 && !res.data.status != 403) {
         toast.success("Group Created Successfully");
         form.reset();
-      });
+      } else {
+        toast.error("you are not authorized user");
+      }
+    };
+    fetchPostRes();
   };
   return (
     <div
